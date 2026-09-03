@@ -18,3 +18,5 @@ graphify-out/
 .vs/
 bin/
 obj/
+# Added by code-review-graph
+.code-review-graph/
