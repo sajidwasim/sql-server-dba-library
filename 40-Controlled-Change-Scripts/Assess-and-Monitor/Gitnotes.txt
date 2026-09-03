@@ -1,0 +1,164 @@
+https://github.com/dahlbyk/posh-git
+POWERSHELL command -- import-module posh-git
+
+
+Common code is missing the initial deployment scripts for the client core db on dev and prod db servers
+
+
+Start working on reporting db and integration db 
+
+------------------------------------------------SSB------------------------------------------------
+
+-- Add new branch
+git branch BranchTest1
+
+-- List local branches
+git branch -v
+
+
+-- Checkout new local branch -q suppresses the stderr from git
+git checkout BranchTest1 -q
+
+-- Checkout to remote branch with tracking localy (The branch does not exists locally)
+git checkout --track origin/20190704_SSBDataCICommon_InitialLookupData
+
+-- List remote branches
+git branch -r
+
+-- push new branch to remote repo origin
+git push -u origin BranchTest1
+
+--show the new branch and develop brach base that they match
+git branch -v
+git branch -v -r
+
+--Make changes in the local repo
+
+--Show status
+git status
+
+--[BranchTest1 ≡ +0 ~0 -1 !]  first number new files second number updated files third number removed files)  in red color
+
+--Add the changes (-A adds all the changes)
+git add -A
+
+--[BranchTest1 ≡ +0 ~0 -1 ~] the exclamation mark changes to ~
+
+--commit changes to local repo
+git commit -m "BranchTest1 changes"
+
+--[BranchTest1 ↑1]  1 change to push to origin
+
+--Show the changes waiting to be pushed
+git status
+
+--push changes
+git push -q
+
+--show local and remote base
+ git branch -v
+ git branch -r -v
+ 
+--switch to branch that we want to merge the changes from the branch we have been working
+--switch to develop
+git checkout develop -q
+
+--fetch before merge to develop
+git fetch
+
+--merge BranchTest1 to develop and read the message and the base
+
+git merge BranchTest1
+
+--push the change to origin
+git push
+
+
+--show the branches and base that they match
+git branch -v
+git branch -v -r
+
+-- checkout to master and merge from develop at this point repeat the same merge, push
+
+
+--remove the branch
+--checkout to branch and unset the remote tracking
+git branch --unset-upstream
+
+--Pay attention to command line changes from [BranchTest1 ≡]>  to [BranchTest1]> 
+
+--delete local branch
+git branch -d BranchTest1
+
+--delete remote branch
+git push origin --delete BranchTest1
+
+
+-- Fetch and show local and remote branches with base numbers
+git fetch --all
+git branch -v
+git branch -v -r
+
+
+------------------------------------------------SSB------------------------------------------------
+
+
+git status
+git pull
+
+git branch -- list the branches local
+git branch -v list the branches with additional information
+git branch -r list the remote branches
+git branch --merged lists the local branches merged to master
+git branch -r --merged lists the remote branches merged to master
+
+git branch "branch_name" -d deletes the local branch
+
+git branch -dr "branch_name" deletes REMOTE branchgit 
+
+git branch BE-2735 origin/BE-2735 -- Branch BE-2735 set up locally to track remote branch BE-2735 from origin
+
+git checkout BE-2735 -- checkout and switch to branch
+
+git branch --all list all the branches include the ones in the remote
+
+* is the one that the head is pointed to
+
+git checkout branchame -- switch to the branch
+
+
+git show-ref master  -- shows reference sha1 to all branches with name master in it
+
+-- shows you the URLs that Git has stored for the shortname to be used when reading and writing to that remote
+git remote -v
+
+-- sycn fork to upstream before you might want to change to proper repository
+git fetch upstream
+git merge upstream/develop
+
+git add -- adds the contents to the local working copy (index)
+git status -- shows the working tree status
+git commit -m "My commit message" -- commites changes to the repository with the message added
+
+git log -1  -- returns the latest commit log record
+
+
+to minimize the conflich "fetch" and "merge" (which pull does that) on local, and then "push"
+
+git pull
+
+git status
+
+git add Astro/SystemLogging/Scripts/RichRelevanceProductFeedLog.sql  -- adds the contents to the local working copy (index)
+
+git commit -m "Update to dbo.RichRelevanceProductFeedLog table after the review removing LOB out of row storage" 
+
+git push  -- pushes the updates to the remote repository
+
+git status
+
+git log -2
+
+
+
+

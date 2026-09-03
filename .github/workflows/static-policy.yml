@@ -1,0 +1,18 @@
+name: Static SQL policy
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run SQL script safety policy
+        shell: pwsh
+        run: ./tools/Test-SqlScriptPolicy.ps1

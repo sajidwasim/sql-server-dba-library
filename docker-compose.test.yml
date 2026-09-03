@@ -1,0 +1,17 @@
+services:
+  sql2019:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    profiles: ["sql2019"]
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?Set MSSQL_SA_PASSWORD outside the repository}"
+    ports: ["${SQL2019_PORT:-14331}:1433"]
+  sql2022:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    profiles: ["sql2022"]
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?Set MSSQL_SA_PASSWORD outside the repository}"
+    ports: ["${SQL2022_PORT:-14332}:1433"]
